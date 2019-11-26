@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xoa hang</title>
+</head>
+<body>
+<h1>Xoa hang</h1>
+<h2>Ban chac chan??</h2>
+<p>
+    <a href="/book">Danh sach Hang</a>
+</p>
+<form th:action="@{/delete-book}" th:object="${book}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Ten Hang:</td>
+            <td th:text="${book.name}"></td>
+        </tr>
+        <tr>
+            <td>Ngay tao:</td>
+            <td th:text="${book.dateOfPurchase}"></td>
+        </tr>
+        <tr>
+            <td>Mo ta:</td>
+            <td th:text="${book.author}"></td>
+        </tr>
+        <tr>
+            <td>Gia:</td>
+            <td th:text="${book.price}"></td>
+        </tr>
+
+        <tr>
+            <td>Loai hang:</td>
+            <td th:text="${book.getCategory().getName()}"></td>
+        </tr>
+        <tr>
+            <td>So luong:</td>
+            <td th:text="${book.soluong}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Xoa hang!!"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

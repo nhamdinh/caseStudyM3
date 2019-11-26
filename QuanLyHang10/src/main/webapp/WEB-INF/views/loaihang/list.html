@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+<a href="/create-category">Tao Loai Hang moi</a>
+<h1>Loai hang</h1>
+<table border="1">
+    <tr>
+        <th>Ten Loai Hang</th>
+        <th>Mo ta</th>
+        <th>Chinh sua</th>
+        <th>Xoa</th>
+    </tr>
+    <th:block th:each="category: ${categories}">
+        <tr>
+            <td th:text="${category.name}"></td>
+            <td th:text="${category.description}"></td>
+            <td><a th:href="@{/edit-category/__${category.id}__ }">Sua</a></td>
+            <td><a th:href="@{/delete-category/__${category.id}__ }">Xoa</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

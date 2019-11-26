@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><a href="/categories"><button type="button">Tao loai hang moi</button></a></p>
+<a href="/create-book">Tao hang moi</a>
+<h1>QUAN LY HANG</h1>
+<form>
+    Search by firstname:
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<!--<p><a th:href="@{/sortByPriceAsc}"><button type="button">Sort By Price Asc</button></a></p>-->
+<!--<p><a th:href="@{/sortByPriceDesc}"><button type="button">Sort By Price Desc</button></a></p>-->
+
+<!--<p><a th:href="@{/sortByDate}"><button type="button">Sort By Date</button></a></p>-->
+
+
+<!--<form action="/searchByCategory" onchange="this.submit()">-->
+<!--    <a>Tim kiem theo Loai Hang:</a>-->
+<!--    <select name="search">-->
+<!--        <option th:each="d:${categories}" th:text="${d.name}" th:value="${d.getId()}"></option>-->
+<!--    </select>-->
+<!--</form>-->
+<br/>
+<table border="10">
+    <tr>
+        <th>Ten Hang</th>
+        <th>Ngay tao</th>
+        <th>Mo ta</th>
+        <th>Gia</th>
+        <th>Loai hang</th>
+
+        <th>So luong</th>
+
+        <th>Chinh sua</th>
+        <th>Xoa</th>
+
+    </tr>
+    <th:block th:each="book : ${books}">
+        <tr>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.dateOfPurchase}">
+            <td th:text="${book.author}">
+            <td th:text="${book.price}">
+            <td th:text="${book.getCategory().getName()}"></td>
+
+            <td th:text="${book.soluong}">
+
+        </tr>
+        <td><a th:href="@{/edit-book/__${book.id}__ }">Chinh sua</a></td>
+        <td><a th:href="@{/delete-book/__${book.id}__ }">Xoa</a></td>
+        </tr>
+    </th:block>
+    <div>
+        <a th:href="@{'/book'(page=${books.number - 1})}" th:if="${books.hasPrevious()}">Previous</a>
+        <span th:text="${books.number + 1}"></span>/<span th:text="${books.totalPages}"></span>
+        <a th:href="@{'/book'(page=${books.number + 1})}" th:if="${books.hasNext()}">Next</a>
+    </div>
+</table>
+</body>
+</html>
